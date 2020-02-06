@@ -4,7 +4,8 @@ pyGetWithCustomHeader
 Per each host in the host list, and each header in the header list, send two consecutive GET requests. 
 The first request contains the specific header with crafted value, and the second does not. 
 If the crafted value appears in the second request, it is *immediately* vulnerable to the cache poisoning attack. 
-If the crafted value appears in the first but not the second request, it is *potentially* vulnerable: it reflects the header value but the response is not cached, however it may be cached in the future. 
+If the crafted value appears in the first but not the second request, it is *potentially* vulnerable: 
+	it reflects the header value but the response is not cached, however it may be cached in the future. 
 If the crafted value appears in the second but not the first request, it is *discrepancy*. This is a bit wired case but does exist.
  
 
@@ -41,7 +42,8 @@ def send_request(urlRaw, header, buster):
 		sys.stdout.write(str(index) + '(r1:' + str(r1.status_code) + ',r2:' + str(r1.status_code) + ') ' + header + '\n')
 		sys.stdout.flush()
 			
-		#the (arguably) assumption: if <> is unfiltered, the risk is high, if it is used to compose a link, the risk is medium, otherwise it is low
+		#the (arguably) assumption: if <> is unfiltered, the risk is high, 
+		#if it is used to compose a link, the risk is medium, otherwise it is low
 		risk1 = 'none'
 		if 'cdnpos' in r1.text:
 			if 'cdnpos<>' in r1.text:
