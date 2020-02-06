@@ -41,6 +41,7 @@ def send_request(urlRaw, header, buster):
 		sys.stdout.write(str(index) + '(r1:' + str(r1.status_code) + ',r2:' + str(r1.status_code) + ') ' + header + '\n')
 		sys.stdout.flush()
 			
+		#the (arguably) assumption: if <> is unfiltered, the risk is high, if it is used to compose a link, the risk is medium, otherwise it is low
 		risk1 = 'none'
 		if 'cdnpos' in r1.text:
 			if 'cdnpos<>' in r1.text:
